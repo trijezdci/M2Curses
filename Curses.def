@@ -1,0 +1,211 @@
+(* M2Curses
+ *
+ *  @file Curses.def
+ *  M2Curses interface
+ *
+ *  Bindings to the curses library
+ *
+ *  Author: Benjamin Kowarsch
+ *
+ *  Copyright (C) 2010 Benjamin Kowarsch. All rights reserved.
+ *
+ *  License:
+ *
+ *  Redistribution  and  use  in source  and  binary forms,  with  or  without
+ *  modification, are permitted provided that the following conditions are met
+ *
+ *  1) NO FEES may be charged for the provision of the software.  The software
+ *     may  NOT  be published  on websites  that contain  advertising,  unless
+ *     specific  prior  written  permission has been obtained.
+ *
+ *  2) Redistributions  of source code must retain the above copyright notice,
+ *     this list of conditions and the following disclaimer.
+ *
+ *  3) Redistributions  in binary form  must  reproduce  the  above  copyright
+ *     notice,  this list of conditions  and  the following disclaimer  in the
+ *     documentation and other materials provided with the distribution.
+ *
+ *  4) Neither the author's name nor the names of any contributors may be used
+ *     to endorse  or  promote  products  derived  from this software  without
+ *     specific prior written permission.
+ *
+ *  5) Where this list of conditions  or  the following disclaimer, in part or
+ *     as a whole is overruled  or  nullified by applicable law, no permission
+ *     is granted to use the software.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO,  THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY  AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT  SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE  FOR  ANY  DIRECT,  INDIRECT,  INCIDENTAL,  SPECIAL,  EXEMPLARY,  OR
+ * CONSEQUENTIAL  DAMAGES  (INCLUDING,  BUT  NOT  LIMITED  TO,  PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS; OR BUSINESS
+ * INTERRUPTION)  HOWEVER  CAUSED  AND ON ANY THEORY OF LIABILITY,  WHETHER IN
+ * CONTRACT,  STRICT LIABILITY,  OR TORT  (INCLUDING NEGLIGENCE  OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,  EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *  
+ *)
+
+
+DEFINITION (* OF *) MODULE Curses;
+
+
+TYPE
+
+(* ---------------------------------------------------------------------------
+ * Curses Status
+ * ------------------------------------------------------------------------ *)
+
+    Status = ( success, failure ); (* we may add more specifics later *)
+
+
+(* ---------------------------------------------------------------------------
+ * Curses Modes
+ * ------------------------------------------------------------------------ *)
+
+    Mode = ( Raw, CBreak );
+    
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.init( status )
+ * ---------------------------------------------------------------------------
+ *
+ * Initialises the curses system and returns the status in <status>. *)
+
+PROCEDURE init ( VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.setMode( mode )
+ * ---------------------------------------------------------------------------
+ *
+ * Sets the mode the curses system to <mode>. *)
+
+PROCEDURE setMode ( mode : Mode );
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.mode
+ * ---------------------------------------------------------------------------
+ *
+ * Returns the mode of the curses system. *)
+ 
+PROCEDURE mode : Mode;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.maxRows
+ * ---------------------------------------------------------------------------
+ *
+ * Returns the number of rows of the virtual terminal. *)
+ 
+PROCEDURE maxRows : CARDINAL;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.maxCols
+ * ---------------------------------------------------------------------------
+ *
+ * Returns the number of coloumns of the virtual terminal. *)
+ 
+PROCEDURE maxCols : CARDINAL;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.setCursor( row, col, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Sets the cursor to the position denoted by <row> and <col> and returns the
+ * status in <status>. *)
+
+PROCEDURE setCursor ( row, col : CARDINAL; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.row
+ * ---------------------------------------------------------------------------
+ *
+ * Returns the row of the current cursor position. *)
+
+PROCEDURE row : CARDINAL;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.col
+ * ---------------------------------------------------------------------------
+ *
+ * Returns the coloumn of the current cursor position. *)
+
+PROCEDURE col : CARDINAL;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.putChar( ch, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Writes character <ch> to the virtual terminal and returns the status in
+ * <status>. *)
+
+PROCEDURE putChar ( ch : CHAR; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.putString( str, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Writes character string <str> to the virtual terminal and returns the
+ * status in <status>. *)
+
+PROCEDURE putString ( str : ARRAY OF CHAR; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.refresh( status )
+ * ---------------------------------------------------------------------------
+ *
+ * Refreshes the output terminal and returns the status in <status>. *)
+
+PROCEDURE refresh ( VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.writeChar( ch, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Writes character <ch> to the virtual terminal, calls refresh and returns the
+ * status in <status>. *)
+
+PROCEDURE writeChar ( ch : CHAR; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.writeString( str, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Writes character string <str> to the virtual terminal, calls refresh and
+ * returns the status in <status>. *)
+
+PROCEDURE writeString ( str : ARRAY OF CHAR; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.clear( status )
+ * ---------------------------------------------------------------------------
+ *
+ * Fills the virtual terminal with whitespace and returns the status in
+ * <status>. *)
+
+PROCEDURE clear ( VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.end( status )
+ * ---------------------------------------------------------------------------
+ *
+ * Ends the use of the curses system and returns the status in <status>. *)
+
+PROCEDURE end ( VAR status : Status ) ;
+
+
+END Curses.
