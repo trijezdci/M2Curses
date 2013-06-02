@@ -151,6 +151,16 @@ PROCEDURE putChar ( ch : CHAR; VAR status : Status ) ;
 
 
 (* ---------------------------------------------------------------------------
+ * function:  Curses.getChar( ch, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Reads one character from the virtual terminal. Returns the character in
+ * <ch> and the status in <status>. *)
+
+PROCEDURE gettChar ( VAR ch : CHAR; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
  * function:  Curses.putString( str, status )
  * ---------------------------------------------------------------------------
  *
@@ -158,6 +168,16 @@ PROCEDURE putChar ( ch : CHAR; VAR status : Status ) ;
  * status in <status>. *)
 
 PROCEDURE putString ( str : ARRAY OF CHAR; VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.getString( str, status )
+ * ---------------------------------------------------------------------------
+ *
+ * Reads a character string from the virtual terminal. Returns the string in
+ * <str> and returns the status in <status>. *)
+
+PROCEDURE getString ( VAR str : ARRAY OF CHAR; VAR status : Status ) ;
 
 
 (* ---------------------------------------------------------------------------
@@ -193,10 +213,30 @@ PROCEDURE writeString ( str : ARRAY OF CHAR; VAR status : Status ) ;
  * function:  Curses.clear( status )
  * ---------------------------------------------------------------------------
  *
- * Fills the virtual terminal with whitespace and returns the status in
+ * Fills the entire virtual terminal with whitespace and returns the status in
  * <status>. *)
 
 PROCEDURE clear ( VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.clearToEOL( status )
+ * ---------------------------------------------------------------------------
+ *
+ * Fills the virtual terminal starting at the current cursor position to the
+ * end of the line with whitespace and returns the status in <status>. *)
+
+PROCEDURE clearToEOL ( VAR status : Status ) ;
+
+
+(* ---------------------------------------------------------------------------
+ * function:  Curses.clearToBottom( status )
+ * ---------------------------------------------------------------------------
+ *
+ * Fills the virtual terminal starting from the current line to the bottom of
+ * the terminal with whitespace and returns the status in <status>. *)
+
+PROCEDURE clearToBottom ( VAR status : Status ) ;
 
 
 (* ---------------------------------------------------------------------------
