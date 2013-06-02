@@ -157,7 +157,7 @@ PROCEDURE putChar ( ch : CHAR; VAR status : Status ) ;
  * Reads one character from the virtual terminal. Returns the character in
  * <ch> and the status in <status>. *)
 
-PROCEDURE gettChar ( VAR ch : CHAR; VAR status : Status ) ;
+PROCEDURE getChar ( VAR ch : CHAR; VAR status : Status ) ;
 
 
 (* ---------------------------------------------------------------------------
